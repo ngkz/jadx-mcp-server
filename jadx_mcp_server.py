@@ -92,6 +92,7 @@ async def search_classes_by_keyword(
     search_in: str = "code",
     offset: int = 0,
     count: int = 20,
+    regex: bool = False,
 ) -> dict:
     """Search for classes containing a specific keyword with flexible filtering options.
 
@@ -125,6 +126,7 @@ async def search_classes_by_keyword(
 
         offset (optional): Starting index for pagination. Default: 0
         count (optional): Maximum number of results to return. Default: 20
+        regex (optional): Interpret search_term as regular expressions. Default: False
 
     Returns:
         dict: Paginated list of classes containing the search term, with metadata about matches
@@ -134,7 +136,7 @@ async def search_classes_by_keyword(
                  and scope targeting capabilities. Use this when you need to find specific code
                  patterns, class names, method names, or other identifiers across the decompiled APK."""
     return await tools.search_tools.search_classes_by_keyword(
-        search_term, package, search_in, offset, count
+        search_term, package, search_in, offset, count, regex
     )
 
 

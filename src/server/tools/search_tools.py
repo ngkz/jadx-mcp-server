@@ -53,6 +53,7 @@ async def search_classes_by_keyword(
     search_in: str = "code",
     offset: int = 0,
     count: int = 20,
+    regex: bool = False,
 ) -> dict:
     """
     Search for classes containing a specific keyword with flexible filtering options.
@@ -87,6 +88,8 @@ async def search_classes_by_keyword(
 
         offset (optional): Starting index for pagination. Default: 0
         count (optional): Maximum number of results to return. Default: 20
+        regex (optional): Interpret search_term as regular expressions. Default: False
+
 
     Returns:
         dict: Paginated list of classes containing the search term, with metadata about matches
@@ -105,6 +108,7 @@ async def search_classes_by_keyword(
             "search_term": search_term,
             "package": package,
             "search_in": search_in,
+            "regex": regex,
         },
         data_extractor=lambda parsed: parsed.get("classes", []),
         fetch_function=get_from_jadx,
